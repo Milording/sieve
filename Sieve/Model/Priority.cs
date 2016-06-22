@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sieve.Model
 {
+    /// <summary>
+    /// Priority of task.
+    /// </summary>
     public enum Priority
     {
         Critical = 4,
