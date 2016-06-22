@@ -1,4 +1,4 @@
-# sieve
-Sieve application which filters a task list
+# Sieve
+Sieve -- application which filters a task list
 
 WTFPL License.
