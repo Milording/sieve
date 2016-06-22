@@ -12,35 +12,15 @@
     mvvm:ViewModelLocator.AutoWireViewModel="true"
     mc:Ignorable="d">
 
-    <Page.Resources>
-        <DataTemplate x:Name="TaskTemplate">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="12"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="12"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="12"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Text="{Binding Content}" Grid.Column="0"/>
-                <TextBlock Text="{Binding DueDate, Converter={StaticResource DateTimeToFriendlyDateConverter}}" Grid.Column="2"/>
-                <TextBlock Text="{Binding Priority}" Grid.Column="4"/>
-            </Grid>
-        </DataTemplate>
-
-    </Page.Resources>
-
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Margin="12,12,12,0">
             <ListView ItemsSource="{Binding TaskList}"
-                      ItemTemplate="{StaticResource TaskTemplate}">
-            </ListView>
+                      ItemTemplate="{StaticResource SieveTaskListTemplate}"/>
 
             <StackPanel Margin="0,12,0,0" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock Text="Sort by" VerticalAlignment="Center"/>
+                    <TextBlock Text="Sort by" VerticalAlignment="Center"
+                               Style="{StaticResource SieveHeaderTextBlock}"/>
                     <ComboBox x:Name="FilterBox" Margin="12,0,0,0" SelectedIndex="0">
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="SelectionChanged">
@@ -66,8 +46,8 @@
             </Grid.ColumnDefinitions>
 
             <TextBox x:Name="QueryBox" Width="200" Grid.Column="0"/>
-            <Button Content="Filter" Grid.Column="2" Command="{Binding FilterCommand}" 
-                            CommandParameter="{Binding ElementName=QueryBox, Path=Text}"/>
+            <Button Content="Filter" Grid.Column="2" Command="{Binding FilterCommand}"
+                    CommandParameter="{Binding ElementName=QueryBox, Path=Text}"/>
         </Grid>
     </Grid>
 
